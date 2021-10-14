@@ -1,48 +1,32 @@
-import React, {useReducer} from "react";
+import React, { useContext } from "react";
+import Home from '../src/pages/Home';
+import GameContext from './utils/gameContext';
 
-function Count() {
-  const dogs = [
-    {
-      name: "Harry",
-      image: "https://images.dog.ceo/breeds/vizsla/n02100583_10960.jpg"
-    },
-    {
-      name: "Hermione",
-      image: "https://images.dog.ceo/breeds/husky/n02110185_1511.jpg"
+export default function App() {
+	const deck = ['A S', 'K S' , 'Q S', 'J S', '10 S', '9 S', '8 S', '7 S', '6 S', '5 S', '4 S', '3 S', '2 S', 'A H', 'K H' , 'Q H', 'J H', '10 H', '9 H', '8 H', '7 H', '6 H', '5 H', '4 H', '3 H', '2 H','A C', 'K C' , 'Q C', 'J C', '10 C', '9 C', '8 C', '7 C', '6 C', '5 C', '4 C', '3 C', '2 C', 'A D', 'K D' , 'Q D', 'J D', '10 D', '9 D', '8 D', '7 D', '6 D', '5 D', '4 D', '3 D', '2 D'];
+
+    const shuffle = (arr) => {
+        const shuffledDeck = [];
+    
+        arr.forEach(() => {
+            let card = Math.floor(Math.random() * arr.length);
+            shuffledDeck.push(arr[card])
+        })
+        console.log(shuffledDeck)
+        return shuffledDeck
     }
-  ];
+  
 
-  const [praise, dispatch] = useReducer((state, action) => {
-    console.log(state)
-    if (action === 'praiseHarry'){
-      return {...state, HarryPraises: state.HarryPraises + 1};
-    } else if (action === 'praiseHermione'){
-      console.log(action);
-      return {...state, HermionePraises: state.HermionePraises + 1};
-    } else {
-      return state;
-    }
-  },
-  {HarryPraises: 0, HermionePraises: 0})
-  console.log(praise)
-  console.log(dispatch)
-
-  return (
-    <div className="App">
-      <div className="row mt-5">
-        {dogs.map(item => (
-          <div key={item.name} className="card mx-auto col-4">
-            <img className="card-img-top" src={item.image} alt={item.name} />
-            <div className="card-body">
-              <h4 className="card-title">{item.name}</h4>
-              <p className="card-text">{item.name} has been praised {praise[item.name+'Praises']} times!</p>
-              <button className="btn btn-primary" onClick={() => dispatch('praise' + item.name)}>Praise</button>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
+	return (
+		<GameContext.Provider value={{deck, shuffle}}>
+			<div className="App">
+				<Home>
+					
+				</Home>
+			</div>
+		</GameContext.Provider>
+			
   );
 }
 
-export default Count;
+
