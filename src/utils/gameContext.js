@@ -4,6 +4,8 @@ const GameContext = createContext({
     deck: [],
     shuffledDeck: [],
     shuffle: () => {},
+    deal: () => {},
+    hand: []
 })
 
-export default GameContext
+export default GameContext;

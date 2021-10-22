@@ -9,6 +9,9 @@ export default function Header(){
             <button id="shuffle" onClick={()=>{
                 gameContext.shuffle(gameContext.deck)
             }}>shuffle</button>
+            <button id='deal' onClick={() => {
+                gameContext.deal(gameContext.shuffledDeck)
+            }} >Deal</button>
         </header>
     )
 };

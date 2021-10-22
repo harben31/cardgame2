@@ -6,19 +6,8 @@
     justify-content: center;
 }
 
-.card{
-    border-radius: 5px;
-    height: 200px;
-    margin: 10px;
-    width: 150px;
-}
-
 #deckStandIn{
     background: yellow;
-}
-
-#starterCard{
-    background:tomato;
     height:200px;
     width: 150px;
 }
